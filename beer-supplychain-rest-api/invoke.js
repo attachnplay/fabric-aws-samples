@@ -17,6 +17,7 @@
 'use strict';
 var util = require('util');
 var helper = require('./connection.js');
+var exporter = require('./exporter.js');
 var logger = helper.getLogger('Invoke');
 
 var invokeChaincode = async function(peerNames, channelName, chaincodeName, args, fcn, username, orgName) {
@@ -102,6 +103,8 @@ var invokeChaincode = async function(peerNames, channelName, chaincodeName, args
 							let message = '##### invokeChaincode - The invoke chaincode transaction was valid.';
 							logger.info(message);
 							logger.info('## %s, %s, %s, %s, %s, %s', fcn, JSON.stringify(args), channelName, chaincodeName, username, orgName);
+							let tx_data = {"txId": txIdAsString, "fcn": fcn, "args": args, "channelName": channelName, "chaincodeName": chaincodeName, "username": username, "orgName": orgName};
+							exporter.exportTransactionData(tx_data);
 							resolve(message);
 						}
 					}, (err) => {

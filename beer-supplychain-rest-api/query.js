@@ -39,7 +39,7 @@ var queryChaincode = async function(peers, channelName, chaincodeName, args, fcn
 
 		logger.info('##### queryChaincode - Query request to Fabric %s', JSON.stringify(request));
 		let responses = await channel.queryByChaincode(request);
-        let ret = [];
+		//let ret = [];
 		if (responses) {
             // you may receive multiple responses if you passed in multiple peers. For example,
             // if the targets : peers in the request above contained 2 peers, you should get 2 responses
@@ -57,6 +57,7 @@ var queryChaincode = async function(peers, channelName, chaincodeName, args, fcn
             // we will only use the first response. We strip out the Fabric key and just return the payload
             let json = JSON.parse(responses[0].toString('utf8'));
 			logger.info('##### queryChaincode - Query json %s', util.inspect(json));
+			/*
 			if (Array.isArray(json)) {
 				for (let key in json) {
 					if (json[key]['Record']) {
@@ -70,7 +71,8 @@ var queryChaincode = async function(peers, channelName, chaincodeName, args, fcn
 			else {
 				ret.push(json); 
 			}
- 			return ret;
+			*/
+ 			return json;
 		} 
 		else {
 			logger.error('##### queryChaincode - result of query, responses is null');
