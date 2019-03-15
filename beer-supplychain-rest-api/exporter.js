@@ -24,6 +24,7 @@ var exportTransactionData = async function(message) {
 		request({
 			url: "https://ghddibof0a.execute-api.us-east-1.amazonaws.com/v1/transaction/message",
 			method: "POST",
+			timeout: 5000,
 			headers: { "content-type": "application/json" },
 			json: message
 		}, function(err, res, body) {
