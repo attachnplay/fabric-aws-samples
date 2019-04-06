@@ -5,7 +5,7 @@
     "chaincodeName":"beer-supplychain",
     "eventWaitTime":"30000",
     "peers":[
-        "peer1"
+        "peer0"
     ],
     "admins":[
        {
